@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buy a Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <style>
+    .step { display: none; }
+    .step.active { display: block; }
+
+    .form-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    h2 { font-weight: 700; }
+    h4 { font-weight: 600; margin-bottom: 20px; }
+
+    label { font-weight: 600; }
+
+    .progress {
+      height: 10px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, #ffc451, #ffbb38);
+    }
+
+    .step {
+      animation: fadeSlide 0.4s ease-in-out;
+    }
+
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-navigation {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .multi-select {
+      height: 130px;
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+
+      <div class="form-card">
+        <h2 class="text-center mb-4">Buy a Home</h2>
+
+        <div class="progress mb-4">
+          <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+        </div>
+
+        <form id="buyHomeForm">
+
+          <!-- STEP 1 -->
+          <div class="step active">
+            <h4>Basic Information</h4>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label>First Name</label>
+                <input class="form-control" required name="firstName">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label>Email</label>
+                <input type="email" class="form-control" required name="email">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label>Phone (optional)</label>
+                <input class="form-control" name="phone">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label>Preferred Contact</label>
+                <select class="form-control" name="contactMethod">
+                  <option>Email</option>
+                  <option>Phone</option>
+                  <option>Text</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="step">
+            <h4>Buying Intent</h4>
+            <label>Buyer Type</label>
+            <select class="form-control mb-3" name="buyerType">
+              <option>First-time buyer</option>
+              <option>Repeat buyer</option>
+              <option>Investor</option>
+            </select>
+
+            <label>Timeline</label>
+            <select class="form-control" name="timeline">
+              <option>0–3 months</option>
+              <option>3–6 months</option>
+              <option>6–12 months</option>
+              <option>12+ months</option>
+            </select>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="step">
+            <h4>Location Preferences</h4>
+            <input class="form-control mb-3" name="city" placeholder="City / Metro Area">
+            <label>Neighborhoods</label>
+            <input class="form-control mb-3" name="neighborhoods">
+            <label>Open to nearby areas?</label>
+            <select class="form-control" name="nearby">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <!-- STEP 4 -->
+          <div class="step">
+            <h4>Property & Budget</h4>
+            <select class="form-control mb-3" name="propertyType">
+              <option>Single-family</option>
+              <option>Condo / Townhome</option>
+              <option>Multi-family</option>
+              <option>New construction</option>
+            </select>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label>Budget Min</label>
+                <input class="form-control" name="budgetMin">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label>Budget Max</label>
+                <input class="form-control" name="budgetMax">
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 5 -->
+          <div class="step">
+            <h4>Features & Style</h4>
+            <input class="form-control mb-3" name="style" placeholder="Home style">
+
+            <label>Must-have features</label>
+            <select multiple class="form-control multi-select mb-3" name="features">
+              <option>Garage</option>
+              <option>Backyard</option>
+              <option>Home Office</option>
+              <option>Finished Basement</option>
+              <option>Energy Efficient</option>
+              <option>Move-in Ready</option>
+            </select>
+
+            <textarea class="form-control" name="dealBreakers" placeholder="Deal breakers"></textarea>
+          </div>
+
+          <!-- STEP 6 -->
+          <div class="step">
+            <h4>Financial Readiness (Optional)</h4>
+
+            <select class="form-control mb-3" name="preApproved">
+              <option>Pre-approved</option>
+              <option>Not yet</option>
+              <option>Planning soon</option>
+            </select>
+
+            <select class="form-control mb-3" name="financing">
+              <option>Conventional</option>
+              <option>FHA</option>
+              <option>VA</option>
+              <option>Cash</option>
+              <option>Unsure</option>
+            </select>
+
+            <select class="form-control mb-3" name="downPayment">
+              <option>&lt;5%</option>
+              <option>5–10%</option>
+              <option>10–20%</option>
+              <option>20%+</option>
+            </select>
+
+            <select class="form-control" name="credit">
+              <option>Below 620</option>
+              <option>620–680</option>
+              <option>680–740</option>
+              <option>740+</option>
+            </select>
+          </div>
+
+          <div class="form-navigation">
+            <button type="button" class="btn btn-outline-secondary" onclick="prevStep()">Back</button>
+            <button type="button" class="btn btn-warning" onclick="skipStep()">Skip</button>
+            <button type="button" class="btn btn-primary" onclick="nextStep()">Next</button>
+            <button type="submit" id="submitBtn" class="btn btn-success d-none">Submit</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+  firebase.initializeApp({
+    apiKey: "YOUR_KEY",
+    authDomain: "YOUR_DOMAIN",
+    projectId: "YOUR_PROJECT_ID"
+  });
+
+  const db = firebase.firestore();
+
+  let step = 0;
+  const steps = document.querySelectorAll(".step");
+  const progressBar = document.getElementById("progressBar");
+
+  function showStep() {
+    steps.forEach((s, i) => s.classList.toggle("active", i === step));
+    progressBar.style.width = ((step + 1) / steps.length) * 100 + "%";
+    document.getElementById("submitBtn").classList.toggle("d-none", step !== steps.length - 1);
+  }
+
+  function nextStep() { if (step < steps.length - 1) step++; showStep(); }
+  function prevStep() { if (step > 0) step--; showStep(); }
+  function skipStep() { nextStep(); }
+
+  showStep();
+
+  document.getElementById("buyHomeForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target));
+    db.collection("buyHomeLeads").add(data)
+      .then(() => alert("Form submitted successfully"));
+  });
+</script>
+
+</body>
+</html>
